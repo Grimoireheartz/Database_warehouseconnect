@@ -17,7 +17,6 @@ if (!$link->set_charset("utf8")) {
 
 if (isset($_GET)) {
 
-    
     $promoname = $_GET['promoname'];
     $promodetail = $_GET['promadetail'];
     $promourl = $_GET['url'];
@@ -26,12 +25,15 @@ if (isset($_GET)) {
     $datenow = $_GET['presentdate'];
 
     $sql = "UPDATE marketing_historial 
-            SET  promo_name= '$promoname',
+            SET 
+            -- promo_name = '$promoname'
             promo_detial='$promodetail',
             url='$promourl',
             stdate='$promostart',
             enddate='$promoend',
             present_datecampaign='$datenow'
+            
+            WHERE promo_name = '$promoname'
             ";
     $result = mysqli_query($link,$sql);
     if ($result) {
