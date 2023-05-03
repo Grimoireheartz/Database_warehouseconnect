@@ -2,8 +2,6 @@
 header("Access-Control-Allow-Origin: *");
 include('server_data2.php');
 
-
-
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
@@ -17,18 +15,36 @@ if (!$link->set_charset("utf8")) {
     exit();
 }
 
-$sql = "SELECT id,promo_name,promo_detial,picture,url,stdate,enddate,present_datecampaign,notifications,notifications_time
-                FROM marketing_historial ";
+if (isset($_GET)) {
 
-$result = mysqli_query($link, $sql);
 
+        $id = $_GET['id'];
+
+
+
+        $sql = "DELETE FROM marketing_historial
+                WHERE id = '$id'
+                 ";
+
+$result = mysqli_query($link,$sql);
 if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $output[] = $row;
-    }
-    echo json_encode($output);
+    echo "delete_successfully";
 } else {
-    echo 'error';
+    echo "error";
 }
 
+}
 mysqli_close($link);
+
+
+
+
+
+
+
+
+
+
+
+
+?>

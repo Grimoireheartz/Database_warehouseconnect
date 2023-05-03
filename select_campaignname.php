@@ -24,7 +24,7 @@ if (isset($_GET)) {
     $promoname = $_GET['promoname'];
 
 
-    $sql = "SELECT promo_name,promo_detial,picture,url,stdate,enddate,present_datecampaign
+    $sql = "SELECT id,promo_name,promo_detial,picture,url,stdate,enddate,present_datecampaign,notifications,notifications_time
                 FROM marketing_historial 
                 WHERE promo_name = '$promoname'
             ";
